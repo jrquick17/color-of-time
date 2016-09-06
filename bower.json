@@ -1,0 +1,17 @@
+{
+  "name": "color-of-time",
+  "homepage": "https://github.com/jrquick17/color-of-time",
+  "authors": [
+    "jrquick17 <jrquick17@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

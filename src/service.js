@@ -1,19 +1,14 @@
-var IndexController = function($scope) {
-    this.isEducationExpanded = false;
-    this.isExperienceExpanded = false;
-    this.isSkillsExpanded = false;
-    this.isProjectsExpanded = false;
+colorOfTime.service('ColorOfTimeService', [function() {
+    var ColorOfTimeService = this;
 
-    this.init = function() {
-        this.changeBackground();
-        setInterval(this.changeBackground, 500);
-    };
+    ColorOfTimeService.getColor = function(speed) {
+        if (typeof speed === 'undefined') {
+            speed = 1;
+        }
 
-    this.changeBackground = function() {
         //Calculate % of day already passed
         var date = new Date();
         var hour = (date.getHours() * 60 * 60 + date.getMinutes() * 60 + date.getSeconds()) / 86400;
-        var speed = 500;
         hour = hour * speed % 1;
 
         //Calculate color value [0-255] based on the time
@@ -54,20 +49,6 @@ var IndexController = function($scope) {
         if (green.length == 1) { green = "0".concat(green); }
         if (blue.length == 1) { blue = "0".concat(blue); }
 
-        var color = "#" + red.concat(green).concat(blue).toUpperCase();
-
-        //Change background color based on calculated color
-        $(document.body).css({
-            background: color,
-            background: "-moz-linear-gradient(-45deg,  #ffffff 0%, " + color + " 100%)",
-            background: "-webkit-gradient(linear, left top, right bottom, color-stop(0%,#ffffff), color-stop(100%," + color + "))",
-            background: "-webkit-linear-gradient(-45deg,  #ffffff 0%," + color + " 100%)",
-            background: "-o-linear-gradient(-45deg,  #ffffff 0%," + color + " 100%)",
-            background: "-ms-linear-gradient(-45deg,  #ffffff 0%," + color + " 100%)",
-            background: "linear-gradient(135deg,  #ffffff 0%," + color + " 100%)",
-            filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='" + color + "',GradientType=1)"
-        });
+        return "#" + red.concat(green).concat(blue).toUpperCase();
     };
-
-    this.init();
-};
+}]);

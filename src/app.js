@@ -1,0 +1,1 @@
+var colorOfTime = angular.module('ColorOfTimeApp', []);

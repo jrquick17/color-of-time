@@ -1,0 +1,17 @@
+<html>
+<head>
+    <script src="../bower_components/angular/angular.min.js"></script>
+
+    <script src="../src/app.js"></script>
+    <script src="../src/controller.js"></script>
+    <script src="../src/directive.js"></script>
+    <script src="../src/service.js"></script>
+</head>
+<body ng-app="ColorOfTimeApp">
+    <div color-of-time style="height: 100%; width: 100%;">
+        <p ng-controller="ColorOfTimeController" style="height: 100%; width: 100%; text-align: center; color: white; font-size: 20vw;">
+            {{ color }}
+        </p>
+    </div>
+</body>
+</html>

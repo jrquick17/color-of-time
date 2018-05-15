@@ -20,30 +20,31 @@
             var red = 0;
             var green = 0;
             var blue = 0;
-            if (hour < .17) {
+
+            if (hour < 0.17) {
                 red = 1;
-                green = hour / .17;
+                green = hour / 0.17;
                 blue = 0;
-            } else if (hour < .34) {
-                red = 1 - ((hour - .17) / .17);
+            } else if (hour < 0.34) {
+                red = 1 - ((hour - 0.17) / 0.17);
                 green = 1;
                 blue = 0;
-            } else if (hour < .51) {
+            } else if (hour < 0.51) {
                 red = 0;
                 green = 1;
-                blue = (hour - .34) / .17;
-            } else if (hour < .68) {
+                blue = (hour - 0.34) / 0.17;
+            } else if (hour < 0.68) {
                 red = 0;
-                green = 1 - ((hour - .51) / .17);
+                green = 1 - ((hour - 0.51) / 0.17);
                 blue = 1;
-            } else if (hour < .85) {
-                red = (hour - .68) / .17;
+            } else if (hour < 0.85) {
+                red = (hour - 0.68) / 0.17;
                 green = 0;
                 blue = 1;
             } else if (hour <= 1) {
                 red = 1;
                 green = 0;
-                blue = 1 - ((hour - .85) / .15);
+                blue = 1 - ((hour - 0.85) / 0.15);
             }
 
             //Convert color value [0-255] to hexadecimal

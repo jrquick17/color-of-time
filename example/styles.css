@@ -1,0 +1,13 @@
+.color {
+    color: white;
+    font-size: 20vw;
+    text-align: center;
+
+    height: 100%;
+    width: 100%;
+}
+
+.max-size {
+    height: 100%;
+    width: 100%;
+}

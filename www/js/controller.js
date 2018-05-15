@@ -32,8 +32,8 @@
          *
          * @returns {string|*}
          */
-        this.getColor = function () {
+        this.getColor = function() {
             return $scope.color;
-        }
+        };
     }
 })();

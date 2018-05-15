@@ -37,9 +37,9 @@
          *
          * @returns {string|*}
          */
-        this.getColor = function () {
+        this.getColor = function() {
             return $scope.color;
-        }
+        };
     }
 })();
 (function() {
@@ -116,13 +116,13 @@
             red = Math.floor(red * 255).toString(16);
             green = Math.floor(green * 255).toString(16);
             blue = Math.floor(blue * 255).toString(16);
-            if (red.length == 1) {
+            if (red.length === 1) {
                 red = "0".concat(red);
             }
-            if (green.length == 1) {
+            if (green.length === 1) {
                 green = "0".concat(green);
             }
-            if (blue.length == 1) {
+            if (blue.length === 1) {
                 blue = "0".concat(blue);
             }
 

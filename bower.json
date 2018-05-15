@@ -4,6 +4,7 @@
   "authors": [
     "jrquick17 <jrquick17@gmail.com>"
   ],
+  "version": "1.0.0",
   "description": "",
   "main": "",
   "license": "MIT",
@@ -13,5 +14,8 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "angular": "^1.7.0"
+  }
 }

@@ -1,1 +1,5 @@
-var colorOfTime = angular.module('ColorOfTimeApp', []);
+(function() {
+    'use strict';
+
+    angular.module('ColorOfTimeApp', []);
+})();

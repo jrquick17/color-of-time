@@ -1,4 +1,57 @@
-(function() {
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function () {
+    'use strict';
+})();
+(function () {
+    'use strict';
+
+    angular.module('ColorOfTimeApp', []);
+})();
+(function () {
+    'use strict';
+
+    angular.module('ColorOfTimeApp').controller('ColorOfTimeController', ColorOfTimeController);
+
+    ColorOfTimeController.$inject = ['ColorOfTimeService', '$scope'];
+
+    function ColorOfTimeController(ColorOfTimeService, $scope) {
+
+        $scope.color = '#FFFFFF';
+
+        $scope.$watch(function () {
+            return ColorOfTimeService.getColor(1);
+        }, function (color) {
+            $scope.color = color;
+        });
+
+        /**
+         * Get the current time's color
+         *
+         * @returns {string|*}
+         */
+        this.getColor = function () {
+            return $scope.color;
+        };
+    }
+})();
+(function () {
+    'use strict';
+
+    angular.module('ColorOfTimeApp').directive('colorOfTime', colorOfTime);
+
+    colorOfTime.$inject = ['ColorOfTimeService'];
+
+    function colorOfTime(ColorOfTimeService) {
+        return {
+            restrict: 'AE',
+            replace: true,
+            link: function (scope, elem, attrs) {
+                elem.css("background-color", ColorOfTimeService.getColor());
+            }
+        };
+    }
+})();
+(function () {
     'use strict';
 
     angular.module('ColorOfTimeApp').service('ColorOfTimeService', ColorOfTimeService);
@@ -25,7 +78,7 @@
                 green = hour / .17;
                 blue = 0;
             } else if (hour < .34) {
-                red = 1 - ((hour - .17) / .17);
+                red = 1 - (hour - .17) / .17;
                 green = 1;
                 blue = 0;
             } else if (hour < .51) {
@@ -34,7 +87,7 @@
                 blue = (hour - .34) / .17;
             } else if (hour < .68) {
                 red = 0;
-                green = 1 - ((hour - .51) / .17);
+                green = 1 - (hour - .51) / .17;
                 blue = 1;
             } else if (hour < .85) {
                 red = (hour - .68) / .17;
@@ -43,7 +96,7 @@
             } else if (hour <= 1) {
                 red = 1;
                 green = 0;
-                blue = 1 - ((hour - .85) / .15);
+                blue = 1 - (hour - .85) / .15;
             }
 
             //Convert color value [0-255] to hexadecimal
@@ -64,3 +117,7 @@
         };
     }
 })();
+
+},{}]},{},[1]);
+
+//# sourceMappingURL=color-of-time.bundle.js.map

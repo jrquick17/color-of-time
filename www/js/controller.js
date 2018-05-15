@@ -1,7 +1,20 @@
 (function() {
     'use strict';
 
-    angular.module('ColorOfTimeApp').controller('ColorOfTimeController', ['ColorOfTimeService', '$scope', function (ColorOfTimeService, $scope) {
+    angular.module('ColorOfTimeApp').controller(
+        'ColorOfTimeController',
+        ColorOfTimeController
+    );
+
+    ColorOfTimeController.$inject = [
+        'ColorOfTimeService',
+        '$scope'
+    ];
+
+    function ColorOfTimeController(
+        ColorOfTimeService,
+        $scope
+    ) {
 
         $scope.color = '#FFFFFF';
 
@@ -22,5 +35,5 @@
         this.getColor = function () {
             return $scope.color;
         }
-    }]);
+    }
 })();

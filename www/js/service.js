@@ -1,12 +1,12 @@
 (function() {
     'use strict';
 
-    angular.module('ColorOfTimeApp').service('ColorOfTimeService', ColorOfTimeService);
+    angular.module('color-of-time').service('ColorOfTimeService', ColorOfTimeService);
 
     function ColorOfTimeService() {
         var ColorOfTimeService = this;
 
-        ColorOfTimeService.getColor = function (speed) {
+        ColorOfTimeService.getColor = function(speed) {
             if (typeof speed === 'undefined') {
                 speed = 1;
             }

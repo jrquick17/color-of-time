@@ -8,13 +8,13 @@
 ##### Inject
 ```angularjs
 angular.module('app', [
-    'ColorOfTimeApp'
+    'color-of-time'
 ]);
 ```
 
 ##### Make background color change based on the time
 ```html
-<body data-ng-app="ColorOfTimeApp">
+<body data-ng-app="color-of-time">
     <div color-of-time>
         <!-- More code -->
      </div>

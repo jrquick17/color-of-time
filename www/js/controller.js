@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('ColorOfTimeApp').controller(
+    angular.module('color-of-time').controller(
         'ColorOfTimeController',
         ColorOfTimeController
     );
@@ -15,25 +15,27 @@
         ColorOfTimeService,
         $scope
     ) {
-
-        $scope.color = '#FFFFFF';
+        var ColorOfTimeController = this;
 
         $scope.$watch(
-            function () {
+            function() {
                 return ColorOfTimeService.getColor(1);
             },
-            function (color) {
-                $scope.color = color;
+            function(color) {
+                ColorOfTimeController.color = color;
             }
         );
 
-        /**
-         * Get the current time's color
-         *
-         * @returns {string|*}
-         */
-        this.getColor = function() {
-            return $scope.color;
-        };
+        ColorOfTimeController.reset = reset;
+        function reset() {
+            ColorOfTimeController.color = '#FFFFFF';
+        }
+
+        ColorOfTimeController.init = init;
+        function init() {
+            ColorOfTimeController.reset();
+        }
+
+        ColorOfTimeController.init();
     }
 })();

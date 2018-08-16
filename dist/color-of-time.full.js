@@ -1,12 +1,12 @@
 (function() {
     'use strict';
 
-    angular.module('ColorOfTimeApp', []);
+    angular.module('color-of-time', []);
 })();
 (function() {
     'use strict';
 
-    angular.module('ColorOfTimeApp').controller(
+    angular.module('color-of-time').controller(
         'ColorOfTimeController',
         ColorOfTimeController
     );
@@ -45,7 +45,7 @@
 (function() {
     'use strict';
 
-    angular.module('ColorOfTimeApp').directive('colorOfTime', colorOfTime);
+    angular.module('color-of-time').directive('colorOfTime', colorOfTime);
 
     colorOfTime.$inject = [
         'ColorOfTimeService'
@@ -66,7 +66,7 @@
 (function() {
     'use strict';
 
-    angular.module('ColorOfTimeApp').service('ColorOfTimeService', ColorOfTimeService);
+    angular.module('color-of-time').service('ColorOfTimeService', ColorOfTimeService);
 
     function ColorOfTimeService() {
         var ColorOfTimeService = this;

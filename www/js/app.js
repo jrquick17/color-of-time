@@ -1,5 +1,5 @@
 (function() {
     'use strict';
 
-    angular.module('ColorOfTimeApp', []);
+    angular.module('color-of-time', []);
 })();

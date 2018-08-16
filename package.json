@@ -1,0 +1,25 @@
+{
+  "name": "color-of-time",
+  "version": "1.1.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jrquick17/color-of-time.git"
+  },
+  "author": "Jeremy Quick <jrquick17@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jrquick17/color-of-time/issues"
+  },
+  "homepage": "https://github.com/jrquick17/color-of-time#readme",
+  "dependencies": {
+    "angular": "^1.7.3"
+  }
+}

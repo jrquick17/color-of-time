@@ -57,6 +57,11 @@
 
         ColorOfTimeService._getRemainingDayPercent = _getRemainingDayPercent;
         function _getRemainingDayPercent(args) {
+            var increment = DefaultService.get(
+                args.increment,
+                1
+            );
+
             var skip = DefaultService.get(
                 args.skip,
                 0
@@ -68,6 +73,7 @@
             var seconds = date.getMinutes() * 60 + minutes;
 
             seconds += date.getSeconds();
+            seconds *= increment;
 
             if (typeof skip === 'number') {
                 seconds += skip;

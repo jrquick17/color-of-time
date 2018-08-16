@@ -16,7 +16,8 @@
             restrict: 'AE',
             replace:  true,
             scope: {
-                skip: '=',
+                increment: '=',
+                skip:      '=',
                 style:     '='
             },
             link: function(scope, elem, attrs) {
@@ -31,7 +32,7 @@
 
                     elem.css(
                         style,
-                        ColorOfTimeService.getColor(args)
+                        ColorOfTimeService.getColor(scope)
                     );
                 }
             }

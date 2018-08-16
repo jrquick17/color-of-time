@@ -17,18 +17,47 @@
 
     ColorOfTimeController.$inject = [
         'ColorOfTimeService',
+        'DefaultService',
+        '$element',
         '$scope'
     ];
 
     function ColorOfTimeController(
         ColorOfTimeService,
+        DefaultService,
+        $element,
         $scope
     ) {
         var ColorOfTimeController = this;
 
+        ColorOfTimeController.args = [];
+
+        $scope.$watch(
+            'increment',
+            function(increment) {
+                ColorOfTimeController.args['increment'] = DefaultService.get(increment, 1);
+            }
+        );
+
+        $scope.$watch(
+            'skip',
+            function(skip) {
+                ColorOfTimeController.args['skip'] = DefaultService.get(skip, 0);
+            }
+        );
+
+        $scope.$watch(
+            'style',
+            function(style) {
+                ColorOfTimeController.args['style'] = DefaultService.get(style, 'background-color');
+            }
+        );
+
         $scope.$watch(
             function() {
-                return ColorOfTimeService.getColor(1);
+                return ColorOfTimeService.getColor(
+                    ColorOfTimeController.args
+                );
             },
             function(color) {
                 ColorOfTimeController.color = color;
@@ -66,15 +95,11 @@
             restrict: 'AE',
             replace:  true,
             scope: {
-                skip: '=',
+                increment: '=',
+                skip:      '=',
                 style:     '='
             },
             link: function(scope, elem, attrs) {
-                var skip = DefaultService.get(
-                    scope.skip,
-                    0
-                );
-
                 var styles = DefaultService.get(
                     scope.style,
                     'background-color'
@@ -86,7 +111,7 @@
 
                     elem.css(
                         style,
-                        ColorOfTimeService.getColor(skip)
+                        ColorOfTimeService.getColor(scope)
                     );
                 }
             }
@@ -98,13 +123,19 @@
 
     angular.module('color-of-time').service('ColorOfTimeService', ColorOfTimeService);
 
-    function ColorOfTimeService() {
+    ColorOfTimeService.$inject = [
+        'DefaultService'
+    ];
+
+    function ColorOfTimeService(
+        DefaultService
+    ) {
         var SECONDS_PER_DAY = 86400;
 
         var ColorOfTimeService = this;
 
-        ColorOfTimeService.getColor = function(skip) {
-            var remainingPercent = ColorOfTimeService._getRemainingDayPercent(skip);
+        ColorOfTimeService.getColor = function(args) {
+            var remainingPercent = ColorOfTimeService._getRemainingDayPercent(args);
 
             return ColorOfTimeService._getColorPercent(remainingPercent);
         };
@@ -145,13 +176,24 @@
         }
 
         ColorOfTimeService._getRemainingDayPercent = _getRemainingDayPercent;
-        function _getRemainingDayPercent(skip) {
+        function _getRemainingDayPercent(args) {
+            var increment = DefaultService.get(
+                args.increment,
+                1
+            );
+
+            var skip = DefaultService.get(
+                args.skip,
+                0
+            );
+
             var date = new Date();
 
             var minutes = date.getHours() * 60;
             var seconds = date.getMinutes() * 60 + minutes;
 
             seconds += date.getSeconds();
+            seconds *= increment;
 
             if (typeof skip === 'number') {
                 seconds += skip;

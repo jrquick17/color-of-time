@@ -47,6 +47,7 @@ angular.module('app', [
 ```
 
 ## Options
+* **increment** (Default: 1): _The number of seconds to skip ahead._
 * **skip** (Default: 0): _The number of seconds to skip ahead._
 * **styles** (Default: 'background-color'): _The css attributes to apply the color too._
 

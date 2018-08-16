@@ -1,18 +1,22 @@
 <html>
 <head>
-    <script src="../node_modules/angular/angular.min.js"></script>
+    <script src="../node_modules/angular/angular.js"></script>
 
     <script src="../dist/color-of-time.min.js"></script>
 
     <link href="styles.css" rel="stylesheet"/>
 </head>
 <body ng-app="color-of-time">
-    <div color-of-time
-         class="max-size">
-        <p class="color"
-           data-ng-controller="ColorOfTimeController as ctrl">
-            {{ ctrl.color }}
-        </p>
+    <div class="max-size">
+        <div data-ng-controller="ColorOfTimeController as ctrl">
+            <color-of-time class="color"
+                           style="'color'">
+                {{ ctrl.color }}
+            </color-of-time>
+            <color-of-time class="color">
+                {{ ctrl.color }}
+            </color-of-time>
+        </div>
     </div>
 </body>
 </html>

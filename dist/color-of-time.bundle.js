@@ -18,24 +18,37 @@
         var ColorOfTimeController = this;
 
         ColorOfTimeController.args = [];
+        ColorOfTimeController.styles = '';
 
         $scope.$watch('increment', function (increment) {
-            ColorOfTimeController.args['increment'] = DefaultService.get(increment, 1);
-        });
+            ColorOfTimeController.args.increment = DefaultService.get(increment, 1);
+        }.bind(ColorOfTimeController));
 
         $scope.$watch('skip', function (skip) {
-            ColorOfTimeController.args['skip'] = DefaultService.get(skip, 0);
-        });
+            ColorOfTimeController.args.skip = DefaultService.get(skip, 0);
+        }.bind(ColorOfTimeController));
 
         $scope.$watch('style', function (style) {
-            ColorOfTimeController.args['style'] = DefaultService.get(style, 'background-color');
-        });
+            ColorOfTimeController.styles = DefaultService.get(style, 'background-color').split(',');
+        }.bind(ColorOfTimeController));
 
         $scope.$watch(function () {
-            return ColorOfTimeService.getColor(ColorOfTimeController.args);
+            return ColorOfTimeController.getColor();
         }, function (color) {
             ColorOfTimeController.color = color;
-        });
+
+            var stylesCount = ColorOfTimeController.styles.length;
+            for (var i = 0; i < stylesCount; i++) {
+                var style = ColorOfTimeController.styles[i];
+
+                $element.css(style, ColorOfTimeController.color);
+            }
+        }, true);
+
+        ColorOfTimeController.getColor = getColor;
+        function getColor() {
+            return ColorOfTimeService.getColor(ColorOfTimeController.args);
+        }
 
         ColorOfTimeController.reset = reset;
         function reset() {
@@ -55,27 +68,18 @@
 
     angular.module('color-of-time').directive('colorOfTime', colorOfTime);
 
-    colorOfTime.$inject = ['ColorOfTimeService', 'DefaultService'];
-
-    function colorOfTime(ColorOfTimeService, DefaultService) {
+    function colorOfTime() {
         return {
+            controller: 'ColorOfTimeController',
+            controllerAs: 'ctrl',
             restrict: 'AE',
-            replace: true,
+            replace: false,
             scope: {
                 increment: '=',
                 skip: '=',
                 style: '='
             },
-            link: function (scope, elem, attrs) {
-                var styles = DefaultService.get(scope.style, 'background-color').split(',');
-
-                var stylesCount = styles.length;
-                for (var i = 0; i < stylesCount; i++) {
-                    var style = styles[i];
-
-                    elem.css(style, ColorOfTimeService.getColor(scope));
-                }
-            }
+            template: ''
         };
     }
 })();

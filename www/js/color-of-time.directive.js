@@ -20,11 +20,6 @@
                 style:     '='
             },
             link: function(scope, elem, attrs) {
-                var skip = DefaultService.get(
-                    scope.skip,
-                    0
-                );
-
                 var styles = DefaultService.get(
                     scope.style,
                     'background-color'
@@ -36,7 +31,7 @@
 
                     elem.css(
                         style,
-                        ColorOfTimeService.getColor(skip)
+                        ColorOfTimeService.getColor(args)
                     );
                 }
             }

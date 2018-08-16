@@ -3,13 +3,19 @@
 
     angular.module('color-of-time').service('ColorOfTimeService', ColorOfTimeService);
 
-    function ColorOfTimeService() {
+    ColorOfTimeService.$inject = [
+        'DefaultService'
+    ];
+
+    function ColorOfTimeService(
+        DefaultService
+    ) {
         var SECONDS_PER_DAY = 86400;
 
         var ColorOfTimeService = this;
 
-        ColorOfTimeService.getColor = function(skip) {
-            var remainingPercent = ColorOfTimeService._getRemainingDayPercent(skip);
+        ColorOfTimeService.getColor = function(args) {
+            var remainingPercent = ColorOfTimeService._getRemainingDayPercent(args);
 
             return ColorOfTimeService._getColorPercent(remainingPercent);
         };
@@ -50,7 +56,12 @@
         }
 
         ColorOfTimeService._getRemainingDayPercent = _getRemainingDayPercent;
-        function _getRemainingDayPercent(skip) {
+        function _getRemainingDayPercent(args) {
+            var skip = DefaultService.get(
+                args.skip,
+                0
+            );
+
             var date = new Date();
 
             var minutes = date.getHours() * 60;

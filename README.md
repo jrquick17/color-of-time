@@ -5,24 +5,45 @@
 
 ## Code Example
 
-##### Create Instance of API Wrapper
-```php
-$key = ''; // TODO: Apply for a developer key @ https://data.bls.gov/registrationEngine/
-$api = new DolBlsAPi($keys);
+##### Inject
+```angularjs
+angular.module('app', [
+    'ColorOfTimeApp'
+]);
 ```
 
-## Motivation
+##### Make background color change based on the time
+```html
+<body data-ng-app="ColorOfTimeApp">
+    <div color-of-time>
+        <!-- More code -->
+     </div>
+</body>
+```
 
 ## Installation
 
 ##### Bower
+###### Install
 ```bash
 bower install color-of-time --save
 ```
 
+###### Add javascript files
+```html
+<script src="bower_components/color-of-time/dist/color-of-time.min.js"></script>
+```
+
+
 ##### NPM
+###### Install
 ```bash
 npm install color-of-time --save
+```
+
+###### Add javascript files
+```html
+<script src="node_modules/color-of-time/dist/color-of-time.min.js"></script>
 ```
 
 ## Tests

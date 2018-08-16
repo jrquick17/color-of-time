@@ -56,7 +56,7 @@
 
         $scope.$watch(
             function() {
-                return ColorOfTimeController.getColor()
+                return ColorOfTimeController.getColor();
             },
             function(color) {
                 ColorOfTimeController.color = color;

@@ -20,26 +20,28 @@
         ColorOfTimeService,
         $scope
     ) {
-
-        $scope.color = '#FFFFFF';
+        var ColorOfTimeController = this;
 
         $scope.$watch(
-            function () {
+            function() {
                 return ColorOfTimeService.getColor(1);
             },
-            function (color) {
-                $scope.color = color;
+            function(color) {
+                ColorOfTimeController.color = color;
             }
         );
 
-        /**
-         * Get the current time's color
-         *
-         * @returns {string|*}
-         */
-        this.getColor = function() {
-            return $scope.color;
-        };
+        ColorOfTimeController.reset = reset;
+        function reset() {
+            ColorOfTimeController.color = '#FFFFFF';
+        }
+
+        ColorOfTimeController.init = init;
+        function init() {
+            ColorOfTimeController.reset();
+        }
+
+        ColorOfTimeController.init();
     }
 })();
 (function() {
@@ -56,9 +58,12 @@
     ) {
         return {
             restrict: 'AE',
-            replace: true,
+            replace:  true,
             link: function(scope, elem, attrs) {
-                elem.css("background-color", ColorOfTimeService.getColor());
+                elem.css(
+                    'background-color',
+                    ColorOfTimeService.getColor()
+                );
             }
         };
     }
@@ -71,7 +76,7 @@
     function ColorOfTimeService() {
         var ColorOfTimeService = this;
 
-        ColorOfTimeService.getColor = function (speed) {
+        ColorOfTimeService.getColor = function(speed) {
             if (typeof speed === 'undefined') {
                 speed = 1;
             }

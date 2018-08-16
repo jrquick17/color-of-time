@@ -9,16 +9,9 @@ var jshint = require('gulp-jshint');
 var rename = require('gulp-rename');
 var resolutions = require('browserify-resolutions');
 var runSequence = require('run-sequence');
-var sass = require('gulp-sass');
 var source = require('vinyl-source-stream');
 var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
-
-gulp.task('sass', function() {
-    return gulp.src('./sass/*')
-        .pipe(sass())
-        .pipe(gulp.dest('./dist/css'));
-});
 
 gulp.task('lint', function() {
     return gulp.src([
@@ -83,8 +76,8 @@ gulp.task('watch', function() {
     gulp.watch('./www/js/**/*', ['build']);
     gulp.watch('./www/js/index.js', ['browserify']);
     gulp.watch('./dist/color-of-time.full.js', ['browserify']);
+    gulp.watch('./bower.json', ['browserify']);
     gulp.watch('./package.json', ['browserify']);
-    gulp.watch('./sass/*', ['sass']);
 });
 
 gulp.task('browser-serve', function() {
@@ -110,7 +103,6 @@ gulp.task('browser-proxy', function() {
 });
 
 gulp.task('build', [
-    'sass',
     'lint',
     'browserify'
 ]);

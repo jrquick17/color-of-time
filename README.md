@@ -2,25 +2,6 @@
  
 [See a demo here](https://www.jrquick.com)
 
-
-## Code Example
-
-##### Inject
-```angularjs
-angular.module('app', [
-    'color-of-time'
-]);
-```
-
-##### Make background color change based on the time
-```html
-<body data-ng-app="color-of-time">
-    <div color-of-time>
-        <!-- More code -->
-     </div>
-</body>
-```
-
 ## Installation
 
 ##### Bower
@@ -45,6 +26,29 @@ npm install color-of-time --save
 ```html
 <script src="node_modules/color-of-time/dist/color-of-time.min.js"></script>
 ```
+
+
+## Code Example
+
+##### Inject
+```angularjs
+angular.module('app', [
+    'color-of-time'
+]);
+```
+
+##### Make background color change based on the time
+```html
+<body data-ng-app="color-of-time">
+    <div color-of-time>
+        <!-- More code -->
+     </div>
+</body>
+```
+
+## Options
+* **skip** (Default: 0): _The number of seconds to skip ahead._
+* **styles** (Default: 'background-color'): _The css attributes to apply the color too._
 
 ## Tests
 

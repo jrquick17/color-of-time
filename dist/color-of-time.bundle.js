@@ -41,27 +41,26 @@
 
     angular.module('color-of-time').directive('colorOfTime', colorOfTime);
 
-    colorOfTime.$inject = ['ColorOfTimeService'];
+    colorOfTime.$inject = ['ColorOfTimeService', 'DefaultService'];
 
-    function colorOfTime(ColorOfTimeService) {
+    function colorOfTime(ColorOfTimeService, DefaultService) {
         return {
             restrict: 'AE',
             replace: true,
             scope: {
+                skip: '=',
                 style: '='
             },
             link: function (scope, elem, attrs) {
-                var styles = ['background-color'];
+                var skip = DefaultService.get(scope.skip, 0);
 
-                if (typeof scope.style !== 'undefined') {
-                    styles = scope.style.split(',');
-                }
+                var styles = DefaultService.get(scope.style, 'background-color').split(',');
 
                 var stylesCount = styles.length;
                 for (var i = 0; i < stylesCount; i++) {
                     var style = styles[i];
 
-                    elem.css(style, ColorOfTimeService.getColor());
+                    elem.css(style, ColorOfTimeService.getColor(skip));
                 }
             }
         };
@@ -73,10 +72,12 @@
     angular.module('color-of-time').service('ColorOfTimeService', ColorOfTimeService);
 
     function ColorOfTimeService() {
+        var SECONDS_PER_DAY = 86400;
+
         var ColorOfTimeService = this;
 
-        ColorOfTimeService.getColor = function () {
-            var remainingPercent = ColorOfTimeService._getRemainingDayPercent();
+        ColorOfTimeService.getColor = function (skip) {
+            var remainingPercent = ColorOfTimeService._getRemainingDayPercent(skip);
 
             return ColorOfTimeService._getColorPercent(remainingPercent);
         };
@@ -117,12 +118,25 @@
         }
 
         ColorOfTimeService._getRemainingDayPercent = _getRemainingDayPercent;
-        function _getRemainingDayPercent() {
+        function _getRemainingDayPercent(skip) {
             var date = new Date();
 
-            var hour = (date.getHours() * 60 * 60 + date.getMinutes() * 60 + date.getSeconds()) / 86400;
+            var minutes = date.getHours() * 60;
+            var seconds = date.getMinutes() * 60 + minutes;
 
-            return hour % 1;
+            seconds += date.getSeconds();
+
+            if (typeof skip === 'number') {
+                seconds += skip;
+            }
+
+            if (seconds > SECONDS_PER_DAY) {
+                seconds -= SECONDS_PER_DAY;
+            }
+
+            var percent = seconds / SECONDS_PER_DAY;
+
+            return percent % 1;
         }
 
         ColorOfTimeService._toHexadecimal = _toHexadecimal;
@@ -147,6 +161,26 @@
         ColorOfTimeService._to255 = _to255;
         function _to255(value) {
             return Math.floor(value * 255).toString(16);
+        }
+    }
+})();
+(function () {
+    'use strict';
+
+    angular.module('color-of-time').service('DefaultService', DefaultService);
+
+    function DefaultService() {
+        var DefaultService = this;
+
+        DefaultService.get = get;
+        function get(alpha, beta) {
+            if (typeof alpha !== 'undefined') {
+                return alpha;
+            } else if (typeof beta !== 'undefined') {
+                return beta;
+            } else {
+                return false;
+            }
         }
     }
 })();

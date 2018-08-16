@@ -4,26 +4,31 @@
     angular.module('color-of-time').directive('colorOfTime', colorOfTime);
 
     colorOfTime.$inject = [
-        'ColorOfTimeService'
+        'ColorOfTimeService',
+        'DefaultService'
     ];
 
     function colorOfTime(
-        ColorOfTimeService
+        ColorOfTimeService,
+        DefaultService
     ) {
         return {
             restrict: 'AE',
             replace:  true,
             scope: {
-                style: '='
+                skip: '=',
+                style:     '='
             },
             link: function(scope, elem, attrs) {
-                var styles = [
-                    'background-color'
-                ];
+                var skip = DefaultService.get(
+                    scope.skip,
+                    0
+                );
 
-                if (typeof scope.style !== 'undefined') {
-                    styles = scope.style.split(',');
-                }
+                var styles = DefaultService.get(
+                    scope.style,
+                    'background-color'
+                ).split(',');
 
                 var stylesCount = styles.length;
                 for (var i = 0; i < stylesCount; i++) {
@@ -31,7 +36,7 @@
 
                     elem.css(
                         style,
-                        ColorOfTimeService.getColor()
+                        ColorOfTimeService.getColor(skip)
                     );
                 }
             }

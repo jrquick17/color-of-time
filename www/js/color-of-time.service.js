@@ -4,10 +4,12 @@
     angular.module('color-of-time').service('ColorOfTimeService', ColorOfTimeService);
 
     function ColorOfTimeService() {
+        var SECONDS_PER_DAY = 86400;
+
         var ColorOfTimeService = this;
 
-        ColorOfTimeService.getColor = function() {
-            var remainingPercent = ColorOfTimeService._getRemainingDayPercent();
+        ColorOfTimeService.getColor = function(skip) {
+            var remainingPercent = ColorOfTimeService._getRemainingDayPercent(skip);
 
             return ColorOfTimeService._getColorPercent(remainingPercent);
         };
@@ -48,12 +50,25 @@
         }
 
         ColorOfTimeService._getRemainingDayPercent = _getRemainingDayPercent;
-        function _getRemainingDayPercent() {
+        function _getRemainingDayPercent(skip) {
             var date = new Date();
 
-            var hour = (date.getHours() * 60 * 60 + date.getMinutes() * 60 + date.getSeconds()) / 86400;
+            var minutes = date.getHours() * 60;
+            var seconds = date.getMinutes() * 60 + minutes;
 
-            return hour % 1;
+            seconds += date.getSeconds();
+
+            if (typeof skip === 'number') {
+                seconds += skip;
+            }
+
+            if (seconds > SECONDS_PER_DAY) {
+                seconds -= SECONDS_PER_DAY;
+            }
+
+            var percent = seconds / SECONDS_PER_DAY;
+
+            return percent % 1;
         }
 
         ColorOfTimeService._toHexadecimal = _toHexadecimal;

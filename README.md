@@ -53,6 +53,16 @@ angular.module('app', [
 </color-of-time>
 ```
 
+##### Multiple properties
+```html
+<color-of-time properties="'fill,color'">
+    <i class="icon github"/>
+    <p>
+        SEE THE CODE!
+    </p>
+</div>
+```
+
 ##### As an attribute
 ```html
 <div class="color"

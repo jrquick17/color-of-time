@@ -1,6 +1,6 @@
 ## Synopsis
  
-[See a demo here](https://www.jrquick.com)
+[See a demo here](https://www.color-of-time.jrquick.com)
 
 ## Installation
 

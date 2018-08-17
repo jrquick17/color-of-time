@@ -21,7 +21,8 @@
     ) {
         var ColorOfTimeController = this;
 
-        ColorOfTimeController.args = [];
+        ColorOfTimeController.args = {};
+
         ColorOfTimeController.styles = '';
 
         $scope.$watch(

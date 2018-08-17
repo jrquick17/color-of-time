@@ -46,10 +46,28 @@ angular.module('app', [
 </body>
 ```
 
+##### Make font change color based on time
+```html
+<color-of-time properties="'color'">
+    Color Of Time
+</color-of-time>
+```
+
+##### As an attribute
+```html
+<div class="color"
+     color-of-time
+     increment="24"
+     skip="60*60*1"
+     properties="'color'">
+    Color Of Time
+</div>
+```
+
 ## Options
 * **increment** (Default: 1): _The number of seconds to skip ahead._
 * **skip** (Default: 0): _The number of seconds to skip ahead._
-* **properties** (Default: 'background-color'): _The css attributes to apply the color too._
+* **properties** (Default: 'background-color'): _The css attributes to apply the color too (separate multiple properties with a comma)._
 
 ## Tests
 

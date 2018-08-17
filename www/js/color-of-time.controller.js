@@ -23,7 +23,7 @@
 
         ColorOfTimeController.args = {};
 
-        ColorOfTimeController.styles = '';
+        ColorOfTimeController.properties = '';
 
         $scope.$watch(
             'increment',
@@ -40,9 +40,9 @@
         );
 
         $scope.$watch(
-            'style',
-            function(style) {
-                ColorOfTimeController.styles = DefaultService.get(style, 'background-color').split(',');
+            'properties',
+            function(properties) {
+                ColorOfTimeController.properties = DefaultService.get(properties, 'background-color').split(',');
             }.bind(ColorOfTimeController)
         );
 
@@ -53,11 +53,11 @@
             function(color) {
                 ColorOfTimeController.color = color;
 
-                var stylesCount = ColorOfTimeController.styles.length;
-                for (var i = 0; i < stylesCount; i++) {
-                    var style = ColorOfTimeController.styles[i];
+                var propertiesCount = ColorOfTimeController.properties.length;
+                for (var i = 0; i < propertiesCount; i++) {
+                    var property = ColorOfTimeController.properties[i];
 
-                    $element.css(style, ColorOfTimeController.color);
+                    $element.css(property, ColorOfTimeController.color);
                 }
             },
             true

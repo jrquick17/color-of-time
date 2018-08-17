@@ -10,9 +10,9 @@
             restrict: 'AE',
             replace:  false,
             scope: {
-                increment: '=',
-                skip:      '=',
-                style:     '='
+                increment:  '=',
+                skip:       '=',
+                properties: '='
             },
             template: ''
         };

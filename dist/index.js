@@ -199,9 +199,12 @@
 
             var date = new Date();
 
-            var minutes = date.getHours() * 60;
-            var seconds = date.getMinutes() * 60 + minutes;
+            var hours = date.getHours();
 
+            var minutes = hours * 60;
+            minutes += date.getMinutes();
+
+            var seconds = minutes * 60;
             seconds += date.getSeconds();
             seconds *= increment;
 

@@ -12,9 +12,9 @@
 
     angular.module('color-of-time').controller('ColorOfTimeController', ColorOfTimeController);
 
-    ColorOfTimeController.$inject = ['ColorOfTimeService', 'DefaultService', '$element', '$scope'];
+    ColorOfTimeController.$inject = ['ColorOfTimeService', 'DefaultService', '$element', '$scope', '$interval'];
 
-    function ColorOfTimeController(ColorOfTimeService, DefaultService, $element, $scope) {
+    function ColorOfTimeController(ColorOfTimeService, DefaultService, $element, $scope, $interval) {
         var ColorOfTimeController = this;
 
         ColorOfTimeController.args = {};
@@ -33,10 +33,11 @@
             ColorOfTimeController.properties = DefaultService.get(properties, 'background-color').split(',');
         }.bind(ColorOfTimeController));
 
-        $scope.$watch(function () {
-            return ColorOfTimeController.getColor();
-        }, function (color) {
-            ColorOfTimeController.color = color;
+        $interval(ColorOfTimeController.getColor, 1000);
+
+        ColorOfTimeController.getColor = getColor;
+        function getColor() {
+            ColorOfTimeController.color = ColorOfTimeService.getColor(ColorOfTimeController.args);
 
             var propertiesCount = ColorOfTimeController.properties.length;
             for (var i = 0; i < propertiesCount; i++) {
@@ -44,11 +45,8 @@
 
                 $element.css(property, ColorOfTimeController.color);
             }
-        }, true);
 
-        ColorOfTimeController.getColor = getColor;
-        function getColor() {
-            return ColorOfTimeService.getColor(ColorOfTimeController.args);
+            return color;
         }
 
         ColorOfTimeController.reset = reset;

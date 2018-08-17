@@ -10,14 +10,16 @@
         'ColorOfTimeService',
         'DefaultService',
         '$element',
-        '$scope'
+        '$scope',
+        '$interval'
     ];
 
     function ColorOfTimeController(
         ColorOfTimeService,
         DefaultService,
         $element,
-        $scope
+        $scope,
+        $interval
     ) {
         var ColorOfTimeController = this;
 
@@ -46,28 +48,34 @@
             }.bind(ColorOfTimeController)
         );
 
-        $scope.$watch(
+        $interval(
             function() {
-                return ColorOfTimeController.getColor();
+                ColorOfTimeController.getColor();
             },
-            function(color) {
-                ColorOfTimeController.color = color;
-
-                var propertiesCount = ColorOfTimeController.properties.length;
-                for (var i = 0; i < propertiesCount; i++) {
-                    var property = ColorOfTimeController.properties[i];
-
-                    $element.css(property, ColorOfTimeController.color);
-                }
-            },
-            true
+            1000
         );
 
         ColorOfTimeController.getColor = getColor;
         function getColor() {
-            return ColorOfTimeService.getColor(
+            var color = ColorOfTimeService.getColor(
                 ColorOfTimeController.args
             );
+
+            ColorOfTimeController.setColor(color);
+
+            return color;
+        }
+
+        ColorOfTimeController.setColor = setColor;
+        function setColor(color) {
+            ColorOfTimeController.color = color;
+
+            var propertiesCount = ColorOfTimeController.properties.length;
+            for (var i = 0; i < propertiesCount; i++) {
+                var property = ColorOfTimeController.properties[i];
+
+                $element.css(property, ColorOfTimeController.color);
+            }
         }
 
         ColorOfTimeController.reset = reset;

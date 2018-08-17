@@ -1,0 +1,3 @@
+# To run this from a server: clone repo into root, copy this file into the root and rename to just .htaccess
+
+DirectoryIndex color-of-time/example/index.html

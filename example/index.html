@@ -1,13 +1,29 @@
 <html>
 <head>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+
     <script src="../node_modules/angular/angular.js"></script>
 
-    <script src="../dist/color-of-time.min.js"></script>
+    <script src="../dist/color-of-time.full.js"></script>
 
     <link href="styles.css" rel="stylesheet"/>
 </head>
 <body ng-app="color-of-time">
     <div class="max-size">
+        <a href="https://github.com/jrquick17/color-of-time">
+            <div class="floater"
+                 color-of-time
+                 properties="'fill,color'">
+                <img class="icon svg"
+                     src="github.svg"/>
+                <p class="text">
+                    SEE THE CODE!
+                </p>
+            </div>
+        </a>
+
         <div class="color">
             <color-of-time>
                 Color Of Time
@@ -176,4 +192,36 @@
         </div>
     </div>
 </body>
+<footer>
+    <script type="text/javascript">
+        $('img.svg').each(
+            function() {
+                var $img = jQuery(this);
+                var imgID = $img.attr('id');
+                var imgClass = $img.attr('class');
+                var imgURL = $img.attr('src');
+
+                $.get(
+                    imgURL,
+                    function(data) {
+                        var $svg = jQuery(data).find('svg');
+
+                        if(typeof imgID !== 'undefined') {
+                            $svg = $svg.attr('id', imgID);
+                        }
+
+                        if(typeof imgClass !== 'undefined') {
+                            $svg = $svg.attr('class', imgClass+' replaced-svg');
+                        }
+
+                        $svg = $svg.removeAttr('xmlns:a');
+
+                        $img.replaceWith($svg);
+                    },
+                    'xml'
+                );
+            }
+        );
+    </script>
+</footer>
 </html>

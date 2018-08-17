@@ -1,12 +1,36 @@
 .color {
-    color: white;
-    font-size: 15vw;
+    color:      white;
+    font-size:  15vw;
     text-align: center;
-    width: 100%;
+    width:      100%;
+}
+
+.floater {
+    position: fixed;
+    bottom:   1em;
+    right:    1em;
+}
+
+.floater .icon {
+    background-color: white;
+    border-radius:    45px;
+    margin-left:      15px;
+}
+
+.floater .text {
+    background-color: white;
+    border-radius:    10px;
+    margin-top:       7px;
+    padding:          3px 8px;
+}
+
+.floater svg {
+    height: 100px;
+    width:  100px;
 }
 
 .max-size,
 .max-size color-of-time {
     height: 100%;
-    width: 100%;
+    width:  100%;
 }

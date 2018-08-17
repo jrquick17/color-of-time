@@ -40,16 +40,23 @@
         );
 
         $scope.$watch(
-            'skip',
-            function(skip) {
-                ColorOfTimeController.args.skip = DefaultService.get(skip, 0);
+            'properties',
+            function(properties) {
+                ColorOfTimeController.properties = DefaultService.get(properties, 'background-color').split(',');
             }.bind(ColorOfTimeController)
         );
 
         $scope.$watch(
-            'properties',
-            function(properties) {
-                ColorOfTimeController.properties = DefaultService.get(properties, 'background-color').split(',');
+            'rate',
+            function(rate) {
+                ColorOfTimeController.rate = DefaultService.get(rate, 1000);
+            }.bind(ColorOfTimeController)
+        );
+
+        $scope.$watch(
+            'skip',
+            function(skip) {
+                ColorOfTimeController.args.skip = DefaultService.get(skip, 0);
             }.bind(ColorOfTimeController)
         );
 
@@ -57,7 +64,7 @@
             function() {
                 ColorOfTimeController.getColor();
             },
-            1000
+            ColorOfTimeController.rate
         );
 
         ColorOfTimeController.getColor = getColor;
@@ -109,8 +116,9 @@
             replace:  false,
             scope: {
                 increment:  '=',
-                skip:       '=',
-                properties: '='
+                rate:       '=',
+                properties: '=',
+                skip:       '='
             },
             template: ''
         };

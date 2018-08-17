@@ -11,8 +11,9 @@
             replace:  false,
             scope: {
                 increment:  '=',
-                skip:       '=',
-                properties: '='
+                rate:       '=',
+                properties: '=',
+                skip:       '='
             },
             template: ''
         };

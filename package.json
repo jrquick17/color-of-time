@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/jrquick17/color-of-time#readme",
   "dependencies": {
-    "angular": "^1.7.3"
+    "angular": "^1.7.8"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
@@ -32,9 +32,9 @@
     "gulp-concat": "^2.6.1",
     "gulp-jshint": "^2.1.0",
     "gulp-rename": "^1.4.0",
-    "gulp-sourcemaps": "^2.6.4",
-    "gulp-uglify": "^3.0.1",
-    "jshint": "^2.9.6",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify": "^3.0.2",
+    "jshint": "^2.10.2",
     "run-sequence": "^2.2.1",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"

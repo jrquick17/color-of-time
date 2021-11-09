@@ -76,7 +76,7 @@ angular.module('app', [
 
 ## Options
 * **increment** (Default: 1): _The number of seconds to skip ahead._
-* **rate** (Default: 1000): _Check every X number of milli seconds._
+* **rate** (Default: 1000): _Check every X number of milliseconds._
 * **skip** (Default: 0): _The number of seconds to skip ahead._
 * **properties** (Default: 'background-color'): _The css attributes to apply the color too (separate multiple properties with a comma)._
 
